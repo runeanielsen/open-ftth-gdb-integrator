@@ -5,7 +5,7 @@ using OpenFTTH.GDBIntegrator.RouteNetwork.Validators;
 using OpenFTTH.GDBIntegrator.Config;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using FluentAssertions;
+using AwesomeAssertions;
 using FakeItEasy;
 using System;
 

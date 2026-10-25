@@ -1,6 +1,6 @@
 using Xunit;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using AwesomeAssertions;
+using AwesomeAssertions.Execution;
 
 namespace OpenFTTH.GDBIntegrator.Config.Tests
 {

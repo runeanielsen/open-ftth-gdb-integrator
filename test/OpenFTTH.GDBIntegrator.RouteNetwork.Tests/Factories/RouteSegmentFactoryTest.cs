@@ -1,8 +1,8 @@
 using Xunit;
 using OpenFTTH.GDBIntegrator.RouteNetwork.Factories;
 using OpenFTTH.GDBIntegrator.Config;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using AwesomeAssertions;
+using AwesomeAssertions.Execution;
 using FakeItEasy;
 using Microsoft.Extensions.Options;
 

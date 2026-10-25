@@ -2,7 +2,7 @@ using Xunit;
 using NetTopologySuite.Geometries;
 using OpenFTTH.GDBIntegrator.RouteNetwork.Validators;
 using Microsoft.Extensions.Logging;
-using FluentAssertions;
+using AwesomeAssertions;
 using FakeItEasy;
 using System;
 

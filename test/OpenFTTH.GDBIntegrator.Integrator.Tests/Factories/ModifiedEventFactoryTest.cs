@@ -1,6 +1,6 @@
 using System;
-using FluentAssertions;
-using FluentAssertions.Execution;
+using AwesomeAssertions;
+using AwesomeAssertions.Execution;
 using OpenFTTH.Events.Core.Infos;
 using OpenFTTH.Events.RouteNetwork.Infos;
 using OpenFTTH.GDBIntegrator.Integrator.Factories;
@@ -51,7 +51,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Tests.Factories
                 result.EventTimestamp.Should().NotBe(new DateTime());
                 result.RouteSegmentInfo.Width.Should().BeEquivalentTo(routeSegment.RouteSegmentInfo.Width);
                 result.RouteSegmentInfo.Height.Should().BeEquivalentTo(null);
-                result.RouteSegmentInfo.Kind.Should().BeEquivalentTo(routeSegment.RouteSegmentInfo.Kind);
+                result.RouteSegmentInfo.Kind.Should().Be(routeSegment.RouteSegmentInfo.Kind);
             }
         }
 

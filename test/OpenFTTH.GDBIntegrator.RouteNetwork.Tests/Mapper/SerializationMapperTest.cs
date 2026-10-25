@@ -2,7 +2,7 @@ using Xunit;
 using OpenFTTH.Events.Core.Infos;
 using OpenFTTH.Events.RouteNetwork.Infos;
 using OpenFTTH.GDBIntegrator.RouteNetwork.Mapping;
-using FluentAssertions;
+using AwesomeAssertions;
 using System;
 
 namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
@@ -23,7 +23,7 @@ namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
             var serializationMapper = new InfoMapper();
             var result = serializationMapper.MapDeploymentState(deploymentStateStringReprestation);
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(expected);
         }
 
         [Fact]
@@ -48,7 +48,7 @@ namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
             var serializationMapper = new InfoMapper();
             var result = serializationMapper.MapMappingMethod(mappingMethodStringRepresentation);
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(expected);
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
             var serializationMapper = new InfoMapper();
             var result = serializationMapper.MapRouteNodeKind(routeNodeKindStringRepresentation);
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(expected);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
             var serializationMapper = new InfoMapper();
             var result = serializationMapper.MapRouteNodeFunction(routeNodeFunctionStringRepresentation);
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(expected);
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace OpenFTTH.GDBIntegrator.RouteNetwork.Tests.Mapping
             var serializationMapper = new InfoMapper();
             var result = serializationMapper.MapRouteSegmentKind(routeSegmentKindStringRepresentation);
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(expected);
         }
 
         [Fact]
