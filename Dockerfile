@@ -29,7 +29,7 @@ RUN dotnet publish -c Release -o out --packages ./packages
 FROM mcr.microsoft.com/dotnet/runtime:10.0-alpine
 WORKDIR /app
 
-RUN apk add --no-cache icu-libs krb5-libs
+RUN apk upgrade --no-cache && apk add --no-cache icu-libs krb5-libs
 
 COPY --from=build-env --chown=app:app /app/src/OpenFTTH.GDBIntegrator/out .
 USER app
