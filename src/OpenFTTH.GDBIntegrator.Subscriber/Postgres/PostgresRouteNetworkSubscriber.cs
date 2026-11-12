@@ -68,12 +68,12 @@ public sealed class PostgresRouteNetworkSubscriber : IRouteNetworkSubscriber
             }
             catch (OperationCanceledException)
             {
-                _editOperationCh.Writer.Complete();
+                _editOperationCh.Writer.TryComplete();
             }
             catch (Exception ex)
             {
                 _logger.LogError("{Exception}", ex);
-                _editOperationCh.Writer.Complete();
+                _editOperationCh.Writer.TryComplete();
                 throw;
             }
         }, token);
@@ -86,12 +86,12 @@ public sealed class PostgresRouteNetworkSubscriber : IRouteNetworkSubscriber
             }
             catch (OperationCanceledException)
             {
-                _editOperationCh.Writer.Complete();
+                _editOperationCh.Writer.TryComplete();
             }
             catch (Exception ex)
             {
                 _logger.LogError("{Exception}", ex);
-                _editOperationCh.Writer.Complete();
+                _editOperationCh.Writer.TryComplete();
                 throw;
             }
         }, token);
@@ -192,7 +192,7 @@ ORDER BY seq_no";
 
             await conn.OpenAsync(token).ConfigureAwait(false);
 
-            var reader = await cmd.ExecuteReaderAsync(token).ConfigureAwait(false);
+            await using var reader = await cmd.ExecuteReaderAsync(token).ConfigureAwait(false);
 
             while (await reader.ReadAsync(token).ConfigureAwait(false))
             {
@@ -275,7 +275,7 @@ DO UPDATE SET latest_seq_no = EXCLUDED.latest_seq_no;";
     {
         if (_editOperationCh is not null)
         {
-            _editOperationCh.Writer.Complete();
+            _editOperationCh.Writer.TryComplete();
         }
     }
 }
