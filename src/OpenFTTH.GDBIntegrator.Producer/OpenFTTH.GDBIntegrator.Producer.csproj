@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <PackageReference Include="OpenFTTH.NotificationClient" Version="11.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.14" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.14" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="11.0.0" />
     <PackageReference Include="OpenFTTH.EventSourcing" Version="11.1.0" />
   </ItemGroup>
 
