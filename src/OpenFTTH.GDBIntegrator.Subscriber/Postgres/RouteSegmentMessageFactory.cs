@@ -63,14 +63,14 @@ public sealed class RouteSegmentMessageFactory
             WorkTaskMrid = pgRouteSegment.WorkTaskMrid ?? Guid.Empty,
             LifeCycleInfo = new LifecycleInfo(
                 _infoMapper.MapDeploymentState(pgRouteSegment.LifecycleDeploymentState),
-                 pgRouteSegment.LifecycleInstallationDate,
-                 pgRouteSegment.LifecycleRemovalDate
+                 pgRouteSegment.LifecycleInstallationDate?.UtcDateTime,
+                 pgRouteSegment.LifecycleRemovalDate?.UtcDateTime
             ),
             MappingInfo = new MappingInfo(
                 _infoMapper.MapMappingMethod(pgRouteSegment.MappingMethod),
                 pgRouteSegment.MappingVerticalAccuracy,
                 pgRouteSegment.MappingHorizontalAccuracy,
-                pgRouteSegment.MappingSurveyDate,
+                pgRouteSegment.MappingSurveyDate?.UtcDateTime,
                 pgRouteSegment.MappingSourceInfo
             ),
             NamingInfo = new NamingInfo(

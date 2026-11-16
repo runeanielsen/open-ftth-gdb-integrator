@@ -32,10 +32,10 @@ public sealed record PostgresRouteSegment
     public string LifecycleDeploymentState { get; init; }
 
     [JsonPropertyName("lifecycle_installation_date")]
-    public DateTime? LifecycleInstallationDate { get; init; }
+    public DateTimeOffset? LifecycleInstallationDate { get; init; }
 
     [JsonPropertyName("lifecycle_removal_date")]
-    public DateTime? LifecycleRemovalDate { get; init; }
+    public DateTimeOffset? LifecycleRemovalDate { get; init; }
 
     [JsonPropertyName("mapping_method")]
     public string MappingMethod { get; init; }
@@ -50,7 +50,7 @@ public sealed record PostgresRouteSegment
     public string MappingSourceInfo { get; init; }
 
     [JsonPropertyName("mapping_survey_date")]
-    public DateTime? MappingSurveyDate { get; init; }
+    public DateTimeOffset? MappingSurveyDate { get; init; }
 
     [JsonPropertyName("safety_classification")]
     public string SafetyClassification { get; init; }
