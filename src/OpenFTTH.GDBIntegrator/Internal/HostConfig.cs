@@ -73,7 +73,8 @@ namespace OpenFTTH.GDBIntegrator.Internal
             hostBuilder.ConfigureServices((hostContext, services) =>
             {
                 services.AddOptions();
-                services.AddMediatR(typeof(GeoDatabaseUpdated).GetTypeInfo().Assembly);
+                services.AddMediatR(cfg =>
+                    cfg.RegisterServicesFromAssembly(typeof(GeoDatabaseUpdated).GetTypeInfo().Assembly));
 
                 services.AddFluentMigratorCore()
                 .ConfigureRunner(rb => rb

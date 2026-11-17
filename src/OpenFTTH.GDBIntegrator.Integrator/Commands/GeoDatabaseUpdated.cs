@@ -28,7 +28,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
         public object UpdateMessage { get; set; }
     }
 
-    public class GeoDatabaseUpdatedHandler : IRequestHandler<GeoDatabaseUpdated, Unit>
+    public class GeoDatabaseUpdatedHandler : IRequestHandler<GeoDatabaseUpdated>
     {
         // This is the global ID for the RouteNetwork event stream. Should not be changed.
         private readonly Guid GLOBAL_STREAM_ID = Guid.Parse("70554b8a-a572-4ab6-b837-19681ed83d35");
@@ -83,7 +83,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
             _eventIdStore = eventIdStore;
         }
 
-        public async Task<Unit> Handle(GeoDatabaseUpdated request, CancellationToken token)
+        public async Task Handle(GeoDatabaseUpdated request, CancellationToken token)
         {
             var eventId = request.UpdateMessage switch
             {
@@ -100,7 +100,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
             if (_eventIdStore.GetEventIds().Contains(eventId))
             {
                 _logger.LogWarning("{EventId} has already been processed.", eventId);
-                return await Task.FromResult(new Unit());
+                return;
             }
 
             try
@@ -126,7 +126,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
                             "Message is invalid and we cannot rollback so we mark it to be deleted.");
                         await _geoDatabase.Commit();
 
-                        return await Task.FromResult(new Unit());
+                        return;
                     }
                     else
                     {
@@ -136,7 +136,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
                         await RollbackOrDelete((request.UpdateMessage as InvalidMessage).Message, "Message is invalid so we rollback or delete.");
                         await _geoDatabase.Commit();
 
-                        return await Task.FromResult(new Unit());
+                        return;
                     }
                 }
 
@@ -157,7 +157,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
 
                         await _geoDatabase.Commit();
 
-                        return await Task.FromResult(new Unit());
+                        return;
                     }
 
                     var workTask = await _workTaskService.GetUserWorkTask(username);
@@ -175,7 +175,7 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
 
                         await _geoDatabase.Commit();
 
-                        return await Task.FromResult(new Unit());
+                        return;
                     }
 
                     // We update the work task ids on the newly digitized network elements.
@@ -287,8 +287,6 @@ namespace OpenFTTH.GDBIntegrator.Integrator.Commands
                 await _geoDatabase.DisposeTransaction();
                 await _geoDatabase.DisposeConnection();
             }
-
-            return await Task.FromResult(new Unit());
         }
 
         // Use this function to send geographicalareaupdated when an error has occured, since we cannot use the modified geometries store.
