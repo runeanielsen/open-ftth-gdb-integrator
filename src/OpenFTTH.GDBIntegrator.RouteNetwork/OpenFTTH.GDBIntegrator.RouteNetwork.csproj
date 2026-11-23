@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="11.0.0" />
     <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="4.0.0" />
-    <PackageReference Include="OpenFTTH.Events" Version="11.1.0" />
+    <PackageReference Include="OpenFTTH.Events" Version="11.2.0" />
   </ItemGroup>
 
   <ItemGroup>
